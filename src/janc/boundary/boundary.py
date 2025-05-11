@@ -209,7 +209,7 @@ def set_boundary(boundary_config:dict):
 
 
     if callable(boundary_config['back_boundary']):
-        def front_boundary(padded_U,padded_aux,theta=None):
+        def back_boundary(padded_U,padded_aux,theta=None):
             U_ub,aux_ub = padded_U[:,3:-3,3:-3,3:6],padded_aux[:,3:-3,3:-3,3:6]
             U_ub,aux_ub = boundary_config['back_boundary'](U_ub,aux_ub,theta)
             U_with_ub,aux_with_ub = replace_fb(U_ub,aux_ub,padded_U,padded_aux)
