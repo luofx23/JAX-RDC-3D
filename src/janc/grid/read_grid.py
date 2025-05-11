@@ -46,7 +46,7 @@ def get_metric(metric_config):
     eta = jnp.linspace(0-2*deta, 1 + 2*deta, ny + 2*2)
     delta = jnp.linspace(0-2*ddelta, 1 + 2*ddelta, nz + 2*2)
     
-    Xi, Eta, Delta = jnp.meshgrid(xi,eta,delta,indexing='ijk')
+    Xi, Eta, Delta = jnp.meshgrid(xi,eta,delta,indexing='ij')
     
     dx_dxi = 2*jnp.pi*(ri + h * Delta)*jnp.sin(2*jnp.pi*Xi)
     dx_ddelta = - h * jnp.cos(2*jnp.pi*Xi)
