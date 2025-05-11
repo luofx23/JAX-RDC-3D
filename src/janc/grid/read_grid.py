@@ -30,7 +30,51 @@ dxi = 1.0
 deta = 1.0
 ddelta = 1.0
 
+
 def get_metric(metric_config):
+    global J,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B
+    ri = metric_config['ri']
+    Ly = metric_config['Ly']
+    h = metric_config['h']
+    nx = metric_config['nx']
+    ny = metric_config['ny']
+    nz = metric_config['nz']
+    dxi = 2*jnp.pi*ri/(nx-1)
+    deta = Ly/(ny-1)
+    ddelta = h/(nz-1)
+    
+    xi = jnp.linspace(0-2*dxi, 1 + 2*dxi, nx + 2*2)
+    eta = jnp.linspace(0-2*deta, 1 + 2*deta, ny + 2*2)
+    delta = jnp.linspace(0-2*ddelta, 1 + 2*ddelta, nz + 2*2)
+    
+    Xi, Eta, Delta = jnp.meshgrid(xi,eta,delta,indexing='ij')
+    Xi = Xi[None,:,:,:]
+    Eta = Eta[None,:,:,:]
+    Delta = Delta[None,:,:,:]
+    
+    
+    J = jnp.ones_like(Xi)
+    dxi_dx = jnp.ones_like(Xi)
+    dxi_dy = jnp.zeros_like(dxi_dx)
+    dxi_dz = jnp.zeros_like(dxi_dx)
+    
+    deta_dx = jnp.zeros_like(dxi_dx)
+    deta_dy = jnp.ones_like(Xi)
+    deta_dz = jnp.zeros_like(dxi_dx)
+    
+    ddelta_dx = jnp.zeros_like(dxi_dx)
+    ddelta_dy = jnp.zeros_like(dxi_dx)
+    ddelta_dz = jnp.ones_like(Xi)
+    
+    nx_F = jnp.zeros_like(Xi[:,3:-3,3:-3,0:1])
+    nz_F = jnp.ones_like(Xi[:,3:-3,3:-3,0:1])
+    
+    nx_B = jnp.zeros_like(Xi[:,3:-3,3:-3,-1:])
+    nz_B = -jnp.ones_like(Xi[:,3:-3,3:-3,-1:])
+
+
+
+def get_metrick(metric_config):
     global J,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B
     ri = metric_config['ri']
     Ly = metric_config['Ly']
