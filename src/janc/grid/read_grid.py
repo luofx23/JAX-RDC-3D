@@ -55,25 +55,25 @@ def get_metric(metric_config):
     dz_ddelta = h * jnp.sin(2*jnp.pi*Xi)
     
     J = dx_dxi*dy_deta*dz_ddelta - dz_dxi*dy_deta*dx_ddelta
-    dxi_dx = 1/J*(dy_deta*dz_ddelta)
-    dxi_dy = jnp.zeros_like(dxi_dx)
-    dxi_dz = -dx_ddelta*dy_deta
+    dxi_dx = 1/J*(dy_deta*dz_ddelta)[None,:,:,:]
+    dxi_dy = jnp.zeros_like(dxi_dx)[None,:,:,:]
+    dxi_dz = -dx_ddelta*dy_deta[None,:,:,:]
     
-    deta_dx = jnp.zeros_like(dxi_dx)
-    deta_dy = (1/J)*(1/dy_deta)
-    deta_dz = jnp.zeros_like(dxi_dx)
+    deta_dx = jnp.zeros_like(dxi_dx)[None,:,:,:]
+    deta_dy = (1/J)*(1/dy_deta)[None,:,:,:]
+    deta_dz = jnp.zeros_like(dxi_dx)[None,:,:,:]
     
-    ddelta_dx = 1/J*(-dy_deta*dz_dxi)
-    ddelta_dy = jnp.zeros_like(dxi_dx)
-    ddelta_dz = 1/J*(dx_dxi*dy_deta)
+    ddelta_dx = 1/J*(-dy_deta*dz_dxi)[None,:,:,:]
+    ddelta_dy = jnp.zeros_like(dxi_dx)[None,:,:,:]
+    ddelta_dz = 1/J*(dx_dxi*dy_deta)[None,:,:,:]
     
-    nx_F = -jnp.cos(2*jnp.pi*Xi[:,:,0:1])
-    nz_F = jnp.sin(2*jnp.pi*Xi[:,:,0:1])
+    nx_F = -jnp.cos(2*jnp.pi*Xi[3:-3,3:-3,0:1])[None,:,:,:]
+    nz_F = jnp.sin(2*jnp.pi*Xi[3:-3,3:-3,0:1])[None,:,:,:]
     
-    nx_B = jnp.cos(2*jnp.pi*Xi[:,:,-1:])
-    nz_B = -jnp.sin(2*jnp.pi*Xi[:,:,-1:])
+    nx_B = jnp.cos(2*jnp.pi*Xi[3:-3,3:-3,-1:])[None,:,:,:]
+    nz_B = -jnp.sin(2*jnp.pi*Xi[3:-3,3:-3,-1:])[None,:,:,:]
 
-
+    J = J[None,:,:,:]
 
 
 
