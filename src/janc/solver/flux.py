@@ -218,7 +218,7 @@ def WENO_minus_z(f):
     return dfj
 
 @jit
-def weno5(U,aux,dx,dy,dz):
+def weno5(U,aux):
     Fplus, Fminus = splitFlux_LF(1, U, aux)
     Gplus, Gminus = splitFlux_LF(2, U, aux)
     Hplus, Hminus = splitFlux_LF(3, U, aux)
@@ -236,6 +236,6 @@ def weno5(U,aux,dx,dy,dz):
     dG = dGp + dGm
     dH = dHp + dHm
 
-    netflux = dF/dx + dG/dy + dH/dz
+    netflux = dF/gd.dxi + dG/gd.deta + dH/gd.ddelta
 
     return -netflux/gd.J[:,3:-3,3:-3,3:-3]
