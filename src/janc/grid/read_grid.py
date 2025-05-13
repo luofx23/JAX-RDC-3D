@@ -31,8 +31,8 @@ deta = 1.0
 ddelta = 1.0
 
 
-def get_metric(metric_config):
-    global J,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B #,dxi,deta,ddelta,
+def get_metrick(metric_config):
+    global J,dxi,deta,ddelta,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B
     ri = metric_config['ri']
     Ly = metric_config['Ly']
     h = metric_config['h']
@@ -74,7 +74,7 @@ def get_metric(metric_config):
 
 
 
-def get_metrick(metric_config):
+def get_metric(metric_config):
     global J,dxi,deta,ddelta,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B
     ri = metric_config['ri']
     Ly = metric_config['Ly']
