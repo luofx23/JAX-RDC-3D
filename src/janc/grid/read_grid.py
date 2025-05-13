@@ -32,7 +32,7 @@ ddelta = 1.0
 
 
 def get_metric(metric_config):
-    global J,dxi,deta,ddelta,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B
+    global J,dxi_dx,dxi_dy,dxi_dz,deta_dx,deta_dy,deta_dz,ddelta_dx,ddelta_dy,ddelta_dz,nx_F,nz_F,nx_B,nz_B #,dxi,deta,ddelta,
     ri = metric_config['ri']
     Ly = metric_config['Ly']
     h = metric_config['h']
