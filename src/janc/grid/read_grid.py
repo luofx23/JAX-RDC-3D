@@ -107,7 +107,7 @@ def get_metric(metric_config):
     dxi_dz = -dx_ddelta*dy_deta
     
     deta_dx = jnp.zeros_like(dxi_dx)
-    deta_dy = (1/J)*(1/dy_deta)
+    deta_dy = (1/dy_deta)
     deta_dz = jnp.zeros_like(dxi_dx)
     
     ddelta_dx = 1/J*(-dy_deta*dz_dxi)
