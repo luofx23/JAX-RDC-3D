@@ -114,11 +114,11 @@ def get_metric(metric_config):
     ddelta_dy = jnp.zeros_like(dxi_dx)
     ddelta_dz = 1/J*(dx_dxi*dy_deta)
     
-    nx_F = -jnp.cos(2*jnp.pi*Xi[:,3:-3,3:-3,0:1])
-    nz_F = jnp.sin(2*jnp.pi*Xi[:,3:-3,3:-3,0:1])
+    nx_F = -jnp.cos(2*jnp.pi*Xi[:,3:-3,3:-3,2:3])
+    nz_F = jnp.sin(2*jnp.pi*Xi[:,3:-3,3:-3,2:3])
     
-    nx_B = jnp.cos(2*jnp.pi*Xi[:,3:-3,3:-3,-1:])
-    nz_B = -jnp.sin(2*jnp.pi*Xi[:,3:-3,3:-3,-1:])
+    nx_B = jnp.cos(2*jnp.pi*Xi[:,3:-3,3:-3,-3:-2])
+    nz_B = -jnp.sin(2*jnp.pi*Xi[:,3:-3,3:-3,-3:-2])
 
 
 
