@@ -15,8 +15,8 @@ def splitFlux_LF(ixy, U, aux):
     rhoE = U[4:5]
 
     zx = (ixy == 1) * gd.dxi_dx + (ixy == 2)*gd.deta_dx + (ixy==3)*gd.ddelta_dx
-    zy = (ixy == 2) * gd.dxi_dy + (ixy == 2)*gd.deta_dy + (ixy==3)*gd.ddelta_dy
-    zz = (ixy == 3) * gd.dxi_dz + (ixy == 2)*gd.deta_dz + (ixy==3)*gd.ddelta_dz
+    zy = (ixy == 1) * gd.dxi_dy + (ixy == 2)*gd.deta_dy + (ixy==3)*gd.ddelta_dy
+    zz = (ixy == 1) * gd.dxi_dz + (ixy == 2)*gd.deta_dz + (ixy==3)*gd.ddelta_dz
 
     F = jnp.concatenate([rho*u,rho*u**2+p,rho*u*v,rho*u*w,u*(rhoE+p),rho*u*Y],axis=0)
     G = jnp.concatenate([rho*v,rho*u*v,rho*v**2+p,rho*v*w,v*(rhoE+p),rho*v*Y],axis=0)
